@@ -3,6 +3,7 @@
 # ✦ OBSIDIAN DETAIL CO. ✦
 ### High-Performance Night-Shift Auto Detailing Studio
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel&logoColor=white)](https://detailing-website-iota.vercel.app)
 [![Vite](https://img.shields.io/badge/Vite-7.3.6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Three.js](https://img.shields.io/badge/Three.js-r182-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
 [![GSAP](https://img.shields.io/badge/GSAP-3.14-88CE02?style=for-the-badge&logo=greensock&logoColor=white)](https://greensock.com/gsap/)
@@ -10,6 +11,8 @@
 [![License](https://img.shields.io/badge/License-MIT-acid?style=for-the-badge&color=c8ff2e&labelColor=090a0c)](LICENSE)
 
 *An ultra-luxury, dark-aesthetic automotive detailing experience crafted with kinetic particle physics, scroll-scrubbed process architecture, and an interactive real-time 3D vehicle studio.*
+
+**Live Website:** [https://detailing-website-iota.vercel.app](https://detailing-website-iota.vercel.app)
 
 </div>
 

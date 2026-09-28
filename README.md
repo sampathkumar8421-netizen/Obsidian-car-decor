@@ -69,7 +69,7 @@ npm install
 ```bash
 npm run dev
 ```
-Open [http://localhost:5173](http://localhost:5173) in your browser to preview the live application with instant Hot Module Replacement.
+Open [http://localhost:5174](http://localhost:5174) in your browser to preview the live application with instant Hot Module Replacement.
 
 ### Production Build
 ```bash

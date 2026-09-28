@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OBSIDIAN Detail Co. — Ceramic, Correction &amp; Cave-Level Interiors</title>
+    <meta
+      name="description"
+      content="OBSIDIAN is a night-shift detailing studio: paint correction, ceramic armor and interior restoration. Scroll the process, spin the car in 3D, book a bay."
+    />
+    <meta name="theme-color" content="#090a0c" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><polygon points='12,2 22,20 2,20' fill='%23c8ff2e'/></svg>" />
+    <!-- Self-hosted fonts: no third-party render-blocking CSS. The two LCP-critical
+         weights are preloaded so headline and label paint in the webfont immediately. -->
+    <link
+      rel="preload"
+      href="/fonts/space-grotesk-latin-700-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/jetbrains-mono-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <!-- Real stylesheet link: styled first paint in dev AND build (no JS-injected CSS flash) -->
+    <link rel="stylesheet" href="/src/style.css" />
+    <script>
+      document.documentElement.classList.add("js", "is-loading");
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body?.classList.add("is-loading");
+      });
+    </script>
+  </head>
+  <body class="is-loading">
+    <!-- ============ PRELOADER ============ -->
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader__stage">
+        <svg viewBox="0 0 220 220" class="loader__ring" aria-hidden="true">
+          <!-- Static outer guide hex -->
+          <path
+            class="loader__hex loader__hex--outer"
+            d="M110,14 L192,61 L192,159 L110,206 L28,159 L28,61 Z"
+            fill="none"
+            stroke="rgba(255,255,255,0.08)"
+            stroke-width="1.5"
+          />
+          <!-- Corner alignment ticks -->
+          <g class="loader__ticks" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round">
+            <line x1="110" y1="4" x2="110" y2="14" />
+            <line x1="110" y1="206" x2="110" y2="216" />
+            <line x1="18" y1="110" x2="28" y2="110" />
+            <line x1="192" y1="110" x2="202" y2="110" />
+          </g>
+          <!-- Active Rotating Core -->
+          <g class="loader__rotator" id="loaderRotator">
+            <!-- Main hex: animated stroke trace -->
+            <path
+              class="loader__hex loader__hex--main"
+              id="loaderMainHex"
+              d="M110,26 L180,66 L180,154 L110,194 L40,154 L40,66 Z"
+              fill="none"
+              stroke="var(--acid)"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <!-- Inner hex: counter-accent -->
+            <path
+              class="loader__hex loader__hex--inner"
+              id="loaderInnerHex"
+              d="M110,58 L151,82 L151,138 L110,162 L69,138 L69,82 Z"
+              fill="none"
+              stroke="rgba(200,255,46,0.4)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <!-- Center obsidian brand mark -->
+            <polygon
+              class="loader__core"
+              id="loaderCore"
+              points="110,99 121,118 99,118"
+              fill="var(--acid)"
+            />
+            <!-- Orbiting energy spark / node -->
+            <circle class="loader__sat" id="loaderSat" cx="110" cy="26" r="4.5" fill="var(--acid)" />
+          </g>
+        </svg>
+        <div class="loader__glow" id="loaderGlow" aria-hidden="true"></div>
+      </div>
+      <p class="loader__word" id="loaderWord">OBSIDIAN</p>
+      <p class="loader__sub" id="loaderSub">NIGHT-SHIFT DETAIL STUDIO</p>
+      <div class="loader__meter">
+        <span class="loader__bar" id="loaderBar"></span>
+      </div>
+      <div class="loader__meta">
+        <span class="loader__status" id="loaderStatus">INITIALIZING SURFACE</span>
+        <span class="loader__pct" id="loaderPct">0%</span>
+      </div>
+    </div>
+
+    <!-- ============ NAV ============ -->
+    <header class="nav" id="nav">
+      <div class="nav__inner container">
+        <a class="nav__brand" href="#top">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M12 2 22 20H2L12 2Z" fill="var(--acid)" />
+          </svg>
+          <span>OBSIDIAN</span>
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#studio">Studio</a>
+          <a href="#compare">Results</a>
+          <a href="#reviews">Reviews</a>
+        </nav>
+        <a class="btn btn--acid nav__cta" href="#booking">Book a bay</a>
+        <button
+          class="nav__toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+          aria-label="Open menu"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+      <div class="nav__mobile" id="mobileMenu" hidden>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#studio">Studio</a>
+        <a href="#compare">Results</a>
+        <a href="#reviews">Reviews</a>
+        <a class="btn btn--acid" href="#booking">Book a bay</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ============ HERO ============ -->
+      <section class="hero">
+        <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+        <div class="hero__inner container">
+          <p class="hero__eyebrow" data-hero>RIVERSIDE · OPEN TILL 2AM · BAY 3</p>
+          <h1 class="hero__title">
+            <span class="hero__line" data-hero>YOUR CAR,</span>
+            <span class="hero__line hero__line--acid" data-hero>RE-ASSEMBLED</span>
+            <span class="hero__line" data-hero>PIXEL BY PIXEL.</span>
+          </h1>
+          <p class="hero__sub" data-hero>
+            We tear the grime down to the panel, then rebuild the shine — hand wash,
+            machine correction, ceramic armor. Watch it happen below, then spin the car
+            yourself.
+          </p>
+          <div class="hero__actions" data-hero>
+            <a class="btn btn--acid btn--lg" href="#studio">Spin the car</a>
+            <a class="btn btn--ghost btn--lg" href="#booking">Book a bay</a>
+          </div>
+          <ul class="hero__stats" aria-label="Studio stats" data-hero>
+            <li><strong data-count="4.9" data-decimals="1">0.0</strong><span>★ average</span></li>
+            <li><strong data-count="312">0</strong><span>reviews</span></li>
+            <li><strong data-count="1400" data-suffix="+">0</strong><span>cars rebuilt</span></li>
+          </ul>
+        </div>
+
+        <figure class="hero__art" aria-hidden="true">
+          <svg viewBox="0 0 560 340">
+            <path
+              id="heroCar"
+              d="M40 250 C 60 250 70 246 82 240 C 100 214 128 186 168 178
+                 C 214 170 330 168 372 176 C 416 184 446 206 470 234
+                 C 492 242 512 246 520 250 C 528 254 528 262 518 264
+                 L 486 264 A 34 34 0 0 0 418 264
+                 L 176 264 A 34 34 0 0 0 108 264
+                 L 52 264 C 40 264 34 256 40 250 Z"
+              fill="none"
+              stroke="rgba(255,255,255,.22)"
+              stroke-width="2"
+            />
+            <circle cx="142" cy="264" r="20" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2" />
+            <circle cx="452" cy="264" r="20" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2" />
+            <path
+              id="heroTrace"
+              d="M40 250 C 60 250 70 246 82 240 C 100 214 128 186 168 178
+                 C 214 170 330 168 372 176 C 416 184 446 206 470 234
+                 C 492 242 512 246 520 250"
+              fill="none"
+              stroke="var(--acid)"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+            <g id="heroDroplet">
+              <path
+                d="M0 -9 C 0 -9 -6.5 -1.8 -6.5 2.2 A 6.5 6.5 0 0 0 6.5 2.2 C 6.5 -1.8 0 -9 0 -9 Z"
+                fill="var(--acid)"
+              />
+            </g>
+          </svg>
+        </figure>
+
+        <a class="hero__scroll" href="#services" aria-label="Scroll to services">
+          <span>SCROLL</span>
+          <i></i>
+        </a>
+      </section>
+
+      <!-- ============ MARQUEE ============ -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track" id="marqueeTrack"></div>
+      </div>
+
+      <!-- ============ SERVICES ============ -->
+      <section class="section container" id="services">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow">01 — SERVICES</p>
+          <h2>FOUR WAYS WE<br />STRIP THE GRIME.</h2>
+        </div>
+        <div class="svc-grid">
+          <article class="svc" data-reveal data-tilt>
+            <span class="svc__num">01</span>
+            <h3>Hand wash &amp; decon</h3>
+            <p>Two-bucket wash, iron fallout, tar dissolve, clay pass. Paint returns to bare glass.</p>
+            <p class="svc__meta">from $59 · 90 min</p>
+          </article>
+          <article class="svc" data-reveal data-tilt>
+            <span class="svc__num">02</span>
+            <h3>Machine correction</h3>
+            <p>Multi-stage compound and polish. Swirls, hazes and buffer trails — deleted.</p>
+            <p class="svc__meta">from $189 · half day</p>
+          </article>
+          <article class="svc" data-reveal data-tilt>
+            <span class="svc__num">03</span>
+            <h3>Ceramic armor</h3>
+            <p>3-year silica layer, panel by panel under IR lamps. Water beads, grime gives up.</p>
+            <p class="svc__meta">from $349 · full day</p>
+          </article>
+          <article class="svc" data-reveal data-tilt>
+            <span class="svc__num">04</span>
+            <h3>Cave-level interiors</h3>
+            <p>Steam, extraction, enzyme treatment. Crumbs, stains and smell — gone by morning.</p>
+            <p class="svc__meta">from $129 · 3 hrs</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ PROCESS (pinned scrub) ============ -->
+      <section class="process" id="process">
+        <div class="container process__grid">
+          <div class="process__copy">
+            <p class="eyebrow">02 — THE PROCESS</p>
+            <h2>ONE CAR.<br />FOUR PASSES.</h2>
+            <div class="proc-steps">
+              <div class="proc-step is-active" data-step="0">
+                <span class="proc-step__tag">PASS 01</span>
+                <h3>Foam bath</h3>
+                <p>Prewash foam dwells and lifts grit so nothing drags across the paint.</p>
+              </div>
+              <div class="proc-step" data-step="1">
+                <span class="proc-step__tag">PASS 02</span>
+                <h3>Decon rinse</h3>
+                <p>Iron remover bleeds purple, tar dissolves, clay bars the rest.</p>
+              </div>
+              <div class="proc-step" data-step="2">
+                <span class="proc-step__tag">PASS 03</span>
+                <h3>Ceramic shield</h3>
+                <p>Leveling silica goes on panel by panel, cured under IR light.</p>
+              </div>
+              <div class="proc-step" data-step="3">
+                <span class="proc-step__tag">PASS 04</span>
+                <h3>Cabin reset</h3>
+                <p>Steam, extract, enzyme. The interior gets the same obsession.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="process__vis">
+            <svg viewBox="0 0 560 340" class="proc-svg" aria-hidden="true">
+              <!-- car base -->
+              <g class="proc-car">
+                <path
+                  d="M40 250 C 60 250 70 246 82 240 C 100 214 128 186 168 178
+                     C 214 170 330 168 372 176 C 416 184 446 206 470 234
+                     C 492 242 512 246 520 250 C 528 254 528 262 518 264
+                     L 486 264 A 34 34 0 0 0 418 264
+                     L 176 264 A 34 34 0 0 0 108 264
+                     L 52 264 C 40 264 34 256 40 250 Z"
+                  fill="rgba(255,255,255,.04)"
+                  stroke="rgba(255,255,255,.35)"
+                  stroke-width="2"
+                />
+                <circle cx="142" cy="264" r="20" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2" />
+                <circle cx="452" cy="264" r="20" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2" />
+              </g>
+              <!-- PASS 1: foam bubbles -->
+              <g id="fxFoam" class="fx">
+                <circle class="bub" cx="150" cy="205" r="10" />
+                <circle class="bub" cx="205" cy="185" r="14" />
+                <circle class="bub" cx="260" cy="175" r="9" />
+                <circle class="bub" cx="315" cy="180" r="12" />
+                <circle class="bub" cx="370" cy="192" r="10" />
+                <circle class="bub" cx="420" cy="215" r="13" />
+                <circle class="bub" cx="120" cy="230" r="8" />
+                <circle class="bub" cx="330" cy="215" r="8" />
+                <circle class="bub" cx="235" cy="215" r="11" />
+                <circle class="bub" cx="450" cy="190" r="7" />
+              </g>
+              <!-- PASS 2: rinse droplets -->
+              <g id="fxRinse" class="fx">
+                <line class="drop" x1="120" y1="130" x2="120" y2="156" />
+                <line class="drop" x1="170" y1="118" x2="170" y2="148" />
+                <line class="drop" x1="225" y1="108" x2="225" y2="142" />
+                <line class="drop" x1="280" y1="104" x2="280" y2="140" />
+                <line class="drop" x1="335" y1="108" x2="335" y2="142" />
+                <line class="drop" x1="390" y1="118" x2="390" y2="150" />
+                <line class="drop" x1="440" y1="132" x2="440" y2="160" />
+                <line class="drop" x1="480" y1="150" x2="480" y2="176" />
+              </g>
+              <!-- PASS 3: ceramic trace over roofline -->
+              <g id="fxShield" class="fx">
+                <path
+                  id="shieldPath"
+                  d="M168 178 C 214 170 330 168 372 176 C 416 184 446 206 470 234"
+                  fill="none"
+                  stroke="var(--acid)"
+                  stroke-width="7"
+                  stroke-linecap="round"
+                  opacity=".9"
+                />
+              </g>
+              <!-- PASS 4: interior bits -->
+              <g id="fxCabin" class="fx">
+                <rect class="seat" x="196" y="196" width="58" height="34" rx="9" />
+                <rect class="seat" x="272" y="196" width="58" height="34" rx="9" />
+                <circle class="wheel2" cx="368" cy="204" r="13" />
+                <rect class="dash" x="392" y="192" width="46" height="10" rx="5" />
+              </g>
+            </svg>
+            <p class="process__hud" id="processHud">PASS 01 / 04 — FOAM BATH</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 3D STUDIO ============ -->
+      <section class="section section--studio" id="studio">
+        <div class="container">
+          <div class="section__head" data-reveal>
+            <p class="eyebrow">03 — THE STUDIO</p>
+            <h2>DRAG THE CAR.<br />PAINT IT. SEAL IT.</h2>
+            <p class="section__sub">
+              A real-time preview of our finishes. Slide the decon line to see the
+              correction happen on the metal itself.
+            </p>
+          </div>
+
+          <div class="studio" data-reveal>
+            <div class="studio__stage">
+              <canvas id="studioCanvas"></canvas>
+              <div class="studio__hint" id="studioHint">DRAG TO ORBIT</div>
+              <div class="studio__decon">
+                <label for="deconRange">DECONTAMINATION</label>
+                <input type="range" id="deconRange" min="0" max="100" value="0" />
+                <span id="deconPct">0%</span>
+              </div>
+            </div>
+
+            <aside class="studio__ui">
+              <div class="studio__group">
+                <p class="studio__label">PAINT</p>
+                <div class="swatches" id="paintSwatches"></div>
+              </div>
+              <div class="studio__group">
+                <p class="studio__label">FINISH</p>
+                <div class="toggles" id="finishToggles"></div>
+              </div>
+              <div class="studio__group">
+                <p class="studio__label">PACKAGES ON THIS CAR</p>
+                <div class="pkgs" id="studioPkgs"></div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ BEFORE / AFTER ============ -->
+      <section class="section container" id="compare">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow">04 — RECEIPTS</p>
+          <h2>DRAG THE LINE.<br />JUDGE THE METAL.</h2>
+        </div>
+        <div class="ba" data-reveal>
+          <div class="ba__frame" id="baFrame">
+            <div class="ba__pane ba__pane--before" aria-hidden="true">
+              <div class="ba__scene ba__scene--before">
+                <div class="ba__car ba__car--before"><i class="ba__wheel"></i><i class="ba__wheel ba__wheel--r"></i></div>
+                <span class="ba__tag ba__tag--before">BEFORE · 8 yrs of swirl</span>
+              </div>
+            </div>
+            <div class="ba__pane ba__pane--after">
+              <div class="ba__scene ba__scene--after">
+                <div class="ba__car ba__car--after"><i class="ba__wheel"></i><i class="ba__wheel ba__wheel--r"></i></div>
+                <span class="ba__tag ba__tag--after">AFTER · decon + ceramic</span>
+              </div>
+            </div>
+            <div
+              class="ba__handle"
+              id="baHandle"
+              role="slider"
+              tabindex="0"
+              aria-label="Before and after comparison slider"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="50"
+            >
+              <span class="ba__grip" aria-hidden="true">◂▸</span>
+            </div>
+          </div>
+          <div class="ba__nav" id="baNav" role="group" aria-label="Result examples"></div>
+        </div>
+      </section>
+
+      <!-- ============ PLANNER ============ -->
+      <section class="section container" id="planner">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow">05 — INSTANT QUOTE</p>
+          <h2>BUILD THE TICKET.</h2>
+        </div>
+        <div class="planner" data-reveal>
+          <div class="planner__choices">
+            <fieldset class="planner__group">
+              <legend>1 · YOUR VEHICLE</legend>
+              <div class="chips" id="vehicleChips" role="group" aria-label="Vehicle size"></div>
+            </fieldset>
+            <fieldset class="planner__group">
+              <legend>2 · SERVICES</legend>
+              <div class="chips" id="serviceChips" role="group" aria-label="Services"></div>
+            </fieldset>
+          </div>
+          <aside class="planner__summary" aria-live="polite">
+            <p class="planner__label">YOUR TICKET</p>
+            <p class="planner__price" id="plannerPrice">—</p>
+            <p class="planner__time" id="plannerTime">Pick at least one service</p>
+            <div class="planner__pkg" id="plannerPkg" hidden>
+              <p class="planner__pkg-hint">BETTER AS A PACKAGE</p>
+              <p class="planner__pkg-name" id="plannerPkgName"></p>
+              <p class="planner__pkg-save" id="plannerPkgSave"></p>
+            </div>
+            <a class="btn btn--acid btn--block" href="#booking" id="plannerToBooking">Book this plan</a>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ BOOKING ============ -->
+      <section class="section section--deep" id="booking">
+        <div class="container booking">
+          <div class="section__head" data-reveal>
+            <p class="eyebrow">06 — BOOKING</p>
+            <h2>LOCK A BAY.</h2>
+            <p class="section__sub">
+              Confirmed by text within the hour. Your ticket carries over from the planner.
+            </p>
+          </div>
+          <form class="booking__form" id="bookingForm" novalidate data-reveal>
+            <div class="booking__plan" id="bookingPlan" hidden>
+              <span class="booking__plan-title">YOUR TICKET</span>
+              <span id="bookingPlanText"></span>
+            </div>
+            <div class="field">
+              <label for="bName">Full name</label>
+              <input id="bName" name="name" type="text" autocomplete="name" required minlength="2" placeholder="Jordan Rivera" />
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="bPhone">Mobile number</label>
+              <input id="bPhone" name="phone" type="tel" autocomplete="tel" required inputmode="tel" placeholder="(555) 014-2288" />
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="bDate">Preferred date</label>
+              <input id="bDate" name="date" type="date" required />
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+            <div class="field field--full">
+              <label for="bNotes">Anything we should know? <span class="opt">(optional)</span></label>
+              <textarea id="bNotes" name="notes" rows="3" placeholder="Gate code, dog in the yard, ceramic only on the daily driver…"></textarea>
+            </div>
+            <button class="btn btn--acid btn--lg btn--full" type="submit" id="bookingSubmit">Request my slot</button>
+            <p class="booking__fine">No prepayment · free reschedule up to 24 hrs before.</p>
+          </form>
+          <div class="booking__done" id="bookingDone" hidden>
+            <svg viewBox="0 0 64 64" width="76" height="76" aria-hidden="true">
+              <circle class="done-ring" cx="32" cy="32" r="28" fill="none" stroke="var(--acid)" stroke-width="3" />
+              <path class="done-check" d="M20 33.5 28.5 42 45 24" fill="none" stroke="var(--acid)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <h3>BAY LOCKED.</h3>
+            <p id="bookingDoneText">We'll text you within the hour.</p>
+            <button class="btn btn--ghost" id="bookingReset">Book another vehicle</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ REVIEWS ============ -->
+      <section class="section container" id="reviews">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow">07 — REVIEWS</p>
+          <h2>WORD ON THE STREET.</h2>
+        </div>
+        <div class="reviews" id="reviewGrid"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>
+          <p class="footer__brand">OBSIDIAN<span> Detail Co.</span></p>
+          <p class="footer__tag">Night-shift detailing · Riverside and 15 miles around.</p>
+        </div>
+        <div class="footer__col">
+          <p class="footer__h">HOURS</p>
+          <p>Mon–Sat · 10:00–02:00</p>
+          <p>Sun · studio bay only</p>
+        </div>
+        <div class="footer__col">
+          <p class="footer__h">CONTACT</p>
+          <p><a href="tel:+15550142288">(555) 014-2288</a></p>
+          <p><a href="mailto:book@obsidian.example">book@obsidian.example</a></p>
+        </div>
+      </div>
+      <p class="footer__fine container">© 2026 OBSIDIAN Detail Co. Demo site — all content is sample data.</p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
